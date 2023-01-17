@@ -5,7 +5,7 @@ import torch
 from thop import clever_format, profile
 from torchsummary import summary
 
-from nets.bisenetv1 import BiSeNetV1
+from nets.bisenetv2 import BiSeNetV2
 
 if __name__ == "__main__":
     input_shape     = [512, 512]
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     backbone        = 'resnet18'
     
     device  = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = BiSeNetV1(n_classes = num_classes).to(device)
+    model = BiSeNetV2(n_classes = num_classes).to(device)
     summary(model, (3, input_shape[0], input_shape[1]))
     
     dummy_input     = torch.randn(1, 3, input_shape[0], input_shape[1]).to(device)
